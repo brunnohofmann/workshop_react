@@ -1,17 +1,23 @@
-import React, { useState, useMemo } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { Index } from "./pages";
-import { About } from "./pages/about";
-import { UserContext } from "./UserContext";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import { UserContext } from "./components/UserContext";
+
+import "./AppWithContextApi.css";
+
 
 function AppRouter () {
-  const [user, setUser] = useState(null);
-
-  const value = useMemo(() => ({ user, setUser }), [user, setUser]);
-
   return (
     <Router>
       <div>
+        <img
+          src="https://i.morioh.com/2934a8d84c.png"
+          height="150"
+          width="175"
+          alt="Unform"
+        />
+        <h1>React & Context Api Hook</h1>
         <nav>
           <ul>
             <li>
@@ -22,8 +28,8 @@ function AppRouter () {
             </li>
           </ul>
         </nav>
-        <UserContext.Provider value={value}>
-          <Route path="/" exact component={Index} />
+        <UserContext.Provider>
+          <Route path="/" exact component={Home} />
           <Route path="/about/" component={About} />
         </UserContext.Provider>
       </div>
