@@ -12,13 +12,12 @@ export const appActions = {
   setToken: token => ({
     type: ACTION_TYPES.APP.SET_TOKEN,
     token,
+  }),
+  addUser: user => ({
+    type: ACTION_TYPES.APP.ADD_USER,
+    user
   })
 };
-
-export const addUser = user => ({
-  type: ACTION_TYPES.APP.ADD_USER,
-  user,
-})
 
 export const appReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {

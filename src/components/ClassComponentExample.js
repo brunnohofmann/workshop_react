@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchFake } from '../fetchFake';
-import { addUser } from '../redux/app/duck';
+import { appActions } from '../redux/app/duck';
 
 import "../App.css";
 
@@ -17,8 +17,8 @@ class ClassComponentExample extends Component {
   }
 
   handleSubmit = (e) => {
-    debugger
     e.preventDefault();
+    this.props.addUser(this.state);
   }
 
   handleStateValue = (e) => {
@@ -90,6 +90,6 @@ const mapStateToProps = state => ({
   state: state
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ addUser }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(appActions, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ClassComponentExample);
