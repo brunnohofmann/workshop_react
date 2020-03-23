@@ -1,35 +1,85 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
+import { fetchFake } from '../fetchFake'
+import "../App.css";
 
-class ClassComponentExample extends Component {
+// Please if you havy someone question about rules visit https://reactjs.org/docs/hooks-rules.html
+
+// when you are using eslint please add the plugin eslint-plugin-react-hooks how dev dependency
+export default class ClasComponentExample extends Component {
+
     state = {
-        quantity: 0
-    };
+        name: '',
+        email: ''
+    }
 
-    increment = () => {
-        const {quantity} = this.state;
+    handleSubmit = (e) => {
+        debugger
+        e.preventDefault();
+    }
 
-        this.setState({quantity: quantity + 1 })
-    };
+    handleStateValue = (e) => {
+        const fieldName = e.target.name;
+        const value = e.target.value;
+        this.setState({ ...this.state, [fieldName]: value });
+        console.log(this.state);
 
-    decrement = () => {
-        const {quantity} = this.state;
+    }
 
-        this.setState({quantity: quantity - 1 })
-    };
+    handleTextTitle = (e) => {
+        document.title = this.state.name;
+    }
 
+    componentDidMount () {
+        document
+            .querySelector("button")
+            .addEventListener("click", this.handleTextTitle);
 
-    render() {
-        const {quantity} = this.state;
+        const user = fetchFake('/user/someUser');
+        this.setState(user);
+    }
 
+    componentDidUpdate (prevProps, prevState) {
+        if (prevState.name !== this.state.name
+            || prevState.email !== this.state.email) {
+            localStorage.setItem('workshop-value', this.state)
+        }
+    }
+
+    componentWillUnmount () {
+        document
+            .querySelector("button")
+            .removeEventListener("click", this.handleTextTitle);
+    }
+
+    render () {
         return (
-            <div>
-                <h1>{quantity}</h1>
-
-                <button onClick={this.increment}>Incrementar</button>
-                <button onClick={this.decrement}>Decrementar</button>
-            </div>
-        );
+            <>
+                <form onSubmit={e => this.handleSubmit(e)}>
+                    <img
+                        src="https://i.morioh.com/2934a8d84c.png"
+                        height="150"
+                        width="175"
+                        alt="Unform"
+                    />
+                    <h1>React & Redux Hooks</h1>
+                    <input
+                        name="name"
+                        label="Full name"
+                        placeholder="Name"
+                        onChange={(e) => this.handleStateValue(e)}
+                    />
+                    <input
+                        name="email"
+                        label="E-mail"
+                        type="email"
+                        placeholder="Email"
+                        onChange={(e) => this.handleStateValue(e)}
+                    />
+                    <button type="submit">Enviar</button>
+                </form>
+                <span>State value</span>
+                <pre>{JSON.stringify(this.state, undefined, 2)}</pre>
+            </>
+        )
     }
 }
-
-export default ClassComponentExample;
