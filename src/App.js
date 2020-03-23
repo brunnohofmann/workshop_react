@@ -85,10 +85,12 @@ class App extends Component {
   }
 =======
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {Provider as ReduxProvider} from 'react-redux';
+import {store} from './redux/store';
+import ClassComponentExample from "./components/ClassComponentExample";
 
 function App() {
+<<<<<<< HEAD
   return (
     <div className="App">
       <header className="App-header">
@@ -108,6 +110,14 @@ function App() {
     </div>
   );
 >>>>>>> Initialize project using Create React App
+=======
+
+    return (
+        <ReduxProvider store={store}>
+            <ClassComponentExample />
+        </ReduxProvider>
+    );
+>>>>>>> Create ClassComponentExample and configure redux store
 }
 
 export default App;
