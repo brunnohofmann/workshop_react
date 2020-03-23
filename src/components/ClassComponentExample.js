@@ -80,14 +80,14 @@ class ClassComponentExample extends Component {
           <button type="submit">Enviar</button>
         </form>
         <span>State value</span>
-        <pre>{JSON.stringify(this.state, undefined, 2)}</pre>
+        <pre>{JSON.stringify(this.props, undefined, 2)}</pre>
       </>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  user: state.user
+  state: state
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({ addUser }, dispatch);

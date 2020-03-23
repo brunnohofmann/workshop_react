@@ -1,5 +1,5 @@
-import {appReducer} from './app/duck';
+import { appReducer } from './app/duck';
 
 export default {
-  app: appReducer,
+  reducerState: appReducer,
 };
