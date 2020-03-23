@@ -1,11 +1,15 @@
 import React, { Component } from "react";
-import { fetchFake } from '../fetchFake'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { fetchFake } from '../fetchFake';
+import { addUser } from '../redux/app/duck';
+
 import "../App.css";
 
 // Please if you havy someone question about rules visit https://reactjs.org/docs/hooks-rules.html
 
 // when you are using eslint please add the plugin eslint-plugin-react-hooks how dev dependency
-export default class ClasComponentExample extends Component {
+class ClassComponentExample extends Component {
 
     state = {
         name: '',
@@ -21,8 +25,6 @@ export default class ClasComponentExample extends Component {
         const fieldName = e.target.name;
         const value = e.target.value;
         this.setState({ ...this.state, [fieldName]: value });
-        console.log(this.state);
-
     }
 
     handleTextTitle = (e) => {
@@ -83,3 +85,11 @@ export default class ClasComponentExample extends Component {
         )
     }
 }
+
+const mapStateToProps = state => ({
+    user: state.user
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({ addUser }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(ClassComponentExample);
