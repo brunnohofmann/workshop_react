@@ -28,6 +28,7 @@ form img {
   height: 80px;
   align-self: center;
   margin-bottom: 30px;
+  border-radius: 4px;
 }
 
 label {
