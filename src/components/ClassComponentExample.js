@@ -16,42 +16,42 @@ class ClassComponentExample extends Component {
     email: ''
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.props.addUser(this.state);
-  }
+  // handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   this.props.addUser(this.state);
+  // }
 
-  handleStateValue = (e) => {
-    const fieldName = e.target.name;
-    const value = e.target.value;
-    this.setState({ ...this.state, [fieldName]: value });
-  }
+  // handleStateValue = (e) => {
+  //   const fieldName = e.target.name;
+  //   const value = e.target.value;
+  //   this.setState({ ...this.state, [fieldName]: value });
+  // }
 
-  handleTextTitle = (e) => {
-    document.title = this.state.name;
-  }
+  // handleTextTitle = (e) => {
+  //   document.title = this.state.name;
+  // }
 
-  componentDidMount () {
-    document
-      .querySelector("button")
-      .addEventListener("click", this.handleTextTitle);
+  // componentDidMount () {
+  //   document
+  //     .querySelector("button")
+  //     .addEventListener("click", this.handleTextTitle);
 
-    const user = fetchFake('/user/someUser');
-    this.setState(user);
-  }
+  //   const user = fetchFake('/user/someUser');
+  //   this.setState(user);
+  // }
 
-  componentDidUpdate (prevProps, prevState) {
-    if (prevState.name !== this.state.name
-      || prevState.email !== this.state.email) {
-      localStorage.setItem('workshop-value', this.state)
-    }
-  }
+  // componentDidUpdate (prevProps, prevState) {
+  //   if (prevState.name !== this.state.name
+  //     || prevState.email !== this.state.email) {
+  //     localStorage.setItem('workshop-value', this.state)
+  //   }
+  // }
 
-  componentWillUnmount () {
-    document
-      .querySelector("button")
-      .removeEventListener("click", this.handleTextTitle);
-  }
+  // componentWillUnmount () {
+  //   document
+  //     .querySelector("button")
+  //     .removeEventListener("click", this.handleTextTitle);
+  // }
 
   render () {
     return (
